@@ -7,16 +7,13 @@ const config = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   useCdn: process.env.NODE_ENV === "production",
   token: process.env.SANITY_API_TOKEN,
+  apiVersion: "2022-03-22",
 }
 
 const client = sanityClient(config)
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "GET") {
-    const { _id } = req.query
-    const result = await client.getDocument(_id[0])
-    res.status(200).json(result)
-  } else if (req.method === "POST") {
+  if (req.method === "POST") {
     const { name, description, isEnabled, questions } = JSON.parse(req.body)
 
     try {
