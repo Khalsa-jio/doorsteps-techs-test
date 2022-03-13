@@ -1,6 +1,8 @@
 # TypeScript Next.js example
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This is a really simple project that shows the usage of Next.js with TypeScript. For the styling I have used Tailwind-css which is utility-first CSS framework packed with classes.
+For the Backend I have used Sanity.io which is platform for structured content.we can also use thier open-source single page application Sanity Studio.
+To access thier sanity studio please see url below.
 
 ## Copy Docker Image
 ```bash
