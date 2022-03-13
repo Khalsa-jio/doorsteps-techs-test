@@ -1,7 +1,7 @@
-# TypeScript Next.js example
+# TypeScript Next.js with tailwind Css and Sanity.io
 
 This is a really simple project that shows the usage of Next.js with TypeScript. For the styling I have used Tailwind-css which is utility-first CSS framework packed with classes.
-For the Backend I have used Sanity.io which is platform for structured content.we can also use thier open-source single page application Sanity Studio.
+For the Backend I have used Sanity.io which is platform for structured content. It uses GROQ declarative language to query collections of largely schema-less JSON documents.we can also use thier open-source single page application Sanity Studio.
 To access thier sanity studio please see url below.
 
 ## Copy Docker Image
@@ -9,9 +9,9 @@ To access thier sanity studio please see url below.
 docker pull 13singhsukh/doorsteps-tech-test_site
 ```
 
-## Studio Url 
+## Sanity Studio Url 
 
-https://doorsteps-tech-test.sanity.studio/
+[Sanity Url](https://doorsteps-tech-test.sanity.studio/)
 
 ## functionality of Application
 This is Next Js and sanity.io application. Functionality -
