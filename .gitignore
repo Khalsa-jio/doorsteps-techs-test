@@ -6,6 +6,7 @@
 .pnp.js
 
 doorstepsstudio/node_modules
+studio/node_modules
 
 # testing
 /coverage

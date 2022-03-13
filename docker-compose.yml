@@ -1,0 +1,55 @@
+version: "3.8"
+
+networks:
+  doorsteps-tech-test:
+
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: doorsteps-tech-test
+    volumes:
+      - ./:/usr/app:delegated
+      - doorsteps-tech-test-node_modules:/usr/app/node_modules
+      - doorsteps-tech-test-next:/usr/app/.next
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - doorsteps-tech-test
+
+  # doorstep_npm:
+  #   image: node:14-alpine
+  #   container_name: npm
+  #   volumes:
+  #     - ./:/usr/app
+  #   working_dir: /usr/app
+  #   entrypoint: ["npm"]
+  #   networks:
+  #     - doorsteps-tech-test
+
+  doorstep_npx:
+    image: node:14-alpine
+    container_name: npx
+    volumes:
+      - ./:/usr/app
+    working_dir: /usr/app
+    entrypoint: ["npx"]
+    networks:
+      - doorsteps-tech-test
+
+  studio_npm:
+    image: node:14-alpine
+    container_name: npm
+    volumes:
+      - ./studio:/usr/app/studio
+    working_dir: /usr/app/studio
+    entrypoint: ["npm"]
+    networks:
+      - doorsteps-tech-test
+
+volumes:
+  doorsteps-tech-test-node_modules:
+  doorsteps-tech-test-next:

@@ -1,26 +1,60 @@
-FROM node:14 as dependencies
+FROM node:14-alpine as base
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+COPY ./package*.json ./
+RUN npm install
 
-WORKDIR /doorsteps-tech-test
 
-COPY package*.json yarn.lock ./
+FROM node:14-alpine as dev
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+COPY ./package*.json ./
+RUN npm install
+EXPOSE 3000
+CMD ["npm", "run", "dev"]
 
-RUN yarn install --frozen-lockfile
 
-FROM node:14 as builder
-WORKDIR /doorsteps-tech-test
+FROM base as pre-prod
 COPY . .
-COPY --from=dependencies /doorsteps-tech-test/node_modules ./node_modules
-RUN yarn build
+RUN npm ci
+RUN npm run build
 
 
-FROM node:14 as runner
-WORKDIR /doorsteps-tech-test
-ENV NODE_ENV production
-
-
-COPY --from=builder /doorsteps-tech-test/node_modules ./node_modules
-COPY --from=builder /doorsteps-tech-test/package.json ./package.json
-
+FROM node:14-alpine as prod
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+COPY --from=pre-prod /usr/app/node_modules ./node_modules
+COPY --from=pre-prod /usr/app/package.json ./package.json
+COPY --from=pre-prod /usr/app/.next ./.next
+COPY --from=pre-prod /usr/app/next.config.js ./next.config.js
+COPY --from=pre-prod /usr/app/postcss.config.js ./postcss.config.js
+COPY --from=pre-prod /usr/app/tailwind.config.js ./tailwind.config.js
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["node_modules/.bin/next", "start"]
+
+
+# FROM node:16-alpine AS builder
+# RUN mkdir -p /usr/app
+# WORKDIR /usr/app
+# COPY ./ ./
+
+
+# RUN npm install 
+# RUN npm run build
+# RUN rm -rf node_modules
+# RUN npm install --production
+
+# FROM node:16-alpine
+# ENV NODE_ENV production
+# RUN mkdir -p /usr/app
+# WORKDIR /usr/app
+# COPY --from=builder /usr/app/node_modules ./node_modules
+# COPY --from=builder /usr/app/package.json ./package.json
+# COPY --from=builder /usr/app/.next ./.next
+# COPY --from=builder /usr/app/next.config.js ./next.config.js
+# COPY --from=builder /usr/app/postcss.config.js ./postcss.config.js
+# COPY --from=builder /usr/app/tailwind.config.js ./tailwind.config.js
+# EXPOSE 3000
+
+# CMD ["npm", "start"]
