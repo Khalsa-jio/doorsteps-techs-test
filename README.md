@@ -46,7 +46,7 @@ Preview the example live on [StackBlitz](http://stackblitz.com/):
 
 ## Deployed on Vercel
 
-[live demo](https://doorsteps-techs-test.vercel.app/)
+[!Live Demo](https://doorsteps-techs-test.vercel.app/)
 
 
 ## Notes
