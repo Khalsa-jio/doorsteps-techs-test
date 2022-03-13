@@ -2,6 +2,11 @@
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
+## Copy Docker Image
+```bash
+docker pull 13singhsukh/doorsteps-tech-test_site
+```
+
 ## Studio Url 
 
 https://doorsteps-tech-test.sanity.studio/
