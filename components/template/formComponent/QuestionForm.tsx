@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import SubmitButton from "../elements/SubmitButton"
+import SubmitButton from "./elements/SubmitButton"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { QuestionInput } from "../../../../interfaces"
-import { getUniqueId, slugNameGenerator } from "../../../global/Function"
+import { QuestionInput } from "../../../interfaces"
+import { getUniqueId, slugNameGenerator } from "../../global/Function"
 
 interface Props {
   setFormData?: (formData: any) => void

@@ -2,7 +2,7 @@ import React from "react"
 import { sanityClient } from "../../lib/sanity"
 import { GetStaticProps } from "next"
 import Header from "../../components/template/Header"
-import QuestionModal from "../../components/template/formComponent/questionForm/QuestionModal"
+import QuestionModal from "../../components/template/formComponent/QuestionForm"
 
 function EditForm({ question }) {
   return (
