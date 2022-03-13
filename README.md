@@ -39,13 +39,6 @@ form/edit/(form-Id)
 3. add new question
 
 
-
-## Preview
-
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
-
 ## Deployed on Vercel
 
 [[Live Demo](https://doorsteps-techs-test.vercel.app/)]
