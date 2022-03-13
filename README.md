@@ -6,6 +6,31 @@ This is a really simple project that shows the usage of Next.js with TypeScript.
 
 https://doorsteps-tech-test.sanity.studio/
 
+## functionality of Application
+This is Next Js and sanity.io application. Functionality -
+Home Page-
+1. Add New Experiment (forms)
+2. Table View of all forms
+3.  Add existing Custom form and master form
+4. Disable or Enable form from homepage
+5. Delete Custom form, master form cannot be deleted
+6. Option to Fill Form
+
+Add Page
+1. add new question
+2. add experiment name and description
+3. delete question if required
+
+form/(custom-form-slug)
+1. custom questions of forms
+2. master form questions
+3. on submit shows thank you page
+
+form/edit/(form-Id)
+1. edit question
+2. edit name and description
+3. add new question
+
 
 
 ## Preview
