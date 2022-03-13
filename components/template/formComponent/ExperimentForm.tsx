@@ -73,6 +73,9 @@ function experimentForm({ experimentData, label }: Props) {
       backgroundColor: "#fff",
       padding: "0",
       border: "none",
+      width: "70%",
+      display: "flex",
+      justifyContent: "center",
     },
     overlay: {
       backgroundColor: "#eff1f5f0",
