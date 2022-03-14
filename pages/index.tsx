@@ -46,7 +46,7 @@ const IndexPage = ({ experiments }: Props) => {
     })
     const result = await response.json()
     if (result.message === "success") {
-      router.push("/")
+      router.replace(router.asPath)
     } else {
       console.log(result)
     }
