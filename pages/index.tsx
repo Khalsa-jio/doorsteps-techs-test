@@ -53,7 +53,17 @@ const IndexPage = () => {
     })
     const result = await response.json()
     if (result.message === "success") {
-      router.reload()
+      // router.reload()
+      setIsEnabled(prev => {
+        const newArr = prev.map(i => {
+          if (i.experimentId === id) {
+            return { experimentId: i.experimentId, isEnabled: !i.isEnabled }
+          }
+          return i
+        })
+        return newArr
+      })
+      setLoading(false)
     } else {
       console.log(result)
     }
