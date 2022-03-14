@@ -53,7 +53,6 @@ const IndexPage = () => {
     })
     const result = await response.json()
     if (result.message === "success") {
-      // router.reload()
       setIsEnabled(prev => {
         const newArr = prev.map(i => {
           if (i.experimentId === id) {
@@ -136,7 +135,7 @@ const IndexPage = () => {
                               </Link>
                             </td>
                             <td className="border-b mr-2 border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                              {experiment.isEnabled && (
+                              {isEnabled[index].isEnabled && (
                                 <Link href={`/forms/${experiment.slugName.current}`}>
                                   <button
                                     className="inline-flex justify-center mx-1 py-1 px-2 border border-transparent shadow
