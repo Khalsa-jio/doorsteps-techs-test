@@ -7,15 +7,13 @@ import Header from "../components/template/Header"
 import DeleteIcon from "../components/global/svgIcons/DeleteIcon"
 import { useRouter } from "next/router"
 import CheckboxMain from "../components/template/formComponent/elements/CheckboxMain"
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import { useEffect } from "react"
 import LoadingSpinner from "../components/template/LoadingSpinner"
-interface Props {
-  experiments: Experiments[]
-}
 
-const IndexPage = ({ experiments }: Props) => {
+const IndexPage = () => {
   const [isEnabled, setIsEnabled] = useState<CheckboxMainProps[]>([])
+  const [experiments, setExperiments] = useState<Experiments[]>([])
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const handleServerDelete = async (id: string) => {
@@ -32,11 +30,20 @@ const IndexPage = ({ experiments }: Props) => {
   }
 
   useEffect(() => {
-    let newArr = []
-    experiments.map(i => (newArr = [...newArr, { isEnabled: i.isEnabled, experimentId: i._id }]))
-    setIsEnabled(newArr)
-    setLoading(false)
-  }, [experiments])
+    const getExperiments = async () => {
+      const response = await fetch("/api/form/experiment")
+      const result = await response.json()
+      console.log(result)
+      if (result.message === "success") {
+        let newArr = []
+        setExperiments(result.data)
+        result.data.map(i => (newArr = [...newArr, { isEnabled: i.isEnabled, experimentId: i._id }]))
+        setIsEnabled(newArr)
+        setLoading(false)
+      }
+    }
+    getExperiments()
+  }, [])
 
   const handleEnable = async (id: string) => {
     setLoading(true)
@@ -46,7 +53,7 @@ const IndexPage = ({ experiments }: Props) => {
     })
     const result = await response.json()
     if (result.message === "success") {
-      router.replace(router.asPath)
+      router.reload()
     } else {
       console.log(result)
     }
@@ -168,22 +175,22 @@ const IndexPage = ({ experiments }: Props) => {
 
 export default IndexPage
 
-export const getServerSideProps = async () => {
-  const query = `
-  *[_type=="experiment"]{
-    _id,
-    name,
-    slugName,
-    description,
-    isEnabled,
-    questions
-  }`
+// export const getServerSideProps = async () => {
+//   const query = `
+//   *[_type=="experiment"]{
+//     _id,
+//     name,
+//     slugName,
+//     description,
+//     isEnabled,
+//     questions
+//   }`
 
-  const experiments = await sanityClient.fetch(query)
+//   const experiments = await sanityClient.fetch(query)
 
-  return {
-    props: {
-      experiments,
-    },
-  }
-}
+//   return {
+//     props: {
+//       experiments,
+//     },
+//   }
+// }
