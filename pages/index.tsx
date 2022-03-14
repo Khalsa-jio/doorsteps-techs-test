@@ -46,7 +46,7 @@ const IndexPage = ({ experiments }: Props) => {
     })
     const result = await response.json()
     if (result.message === "success") {
-      router.reload()
+      router.push("/")
     } else {
       console.log(result)
     }

@@ -57,18 +57,18 @@ function Tabs({ formData, handleDelete, label }: Props) {
                   {label !== "client" && label !== "experiment" && (
                     <Link href={`/edit/${_id}`}>
                       <a>
-                        <EditIcon classes="w-5 h-5 block opacity-40 absolute right-20 top-[30%] hover:text-white duration-150 hover:opacity-100" />
+                        <EditIcon classes="w-5 h-5 block opacity-40 absolute right-20 top-1/3 hover:text-white duration-150 hover:opacity-100" />
                       </a>
                     </Link>
                   )}
 
                   <a onClick={() => handleDelete(unique)}>
-                    <DeleteIcon classes="w-5 h-5 block opacity-40 absolute right-10 top-[30%] hover:text-white duration-150 hover:opacity-100" />
+                    <DeleteIcon classes="w-5 h-5 block opacity-40 absolute right-10 top-1/3 hover:text-white duration-150 hover:opacity-100" />
                   </a>
 
                   <a onClick={() => handleTab(_id)}>
                     <ArrowUp
-                      classes={`w-5 h-5 block opacity-40 absolute right-2 top-[30%] hover:text-white duration-150 hover:opacity-100  ${
+                      classes={`w-5 h-5 block opacity-40 absolute right-2 top-1/3 hover:text-white duration-150 hover:opacity-100  ${
                         open ? "rotate-180" : ""
                       }`}
                     />
