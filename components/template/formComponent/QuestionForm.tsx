@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import SubmitButton from "./elements/SubmitButton"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { QuestionInput } from "../../../interfaces"
-import { getUniqueId, slugNameGenerator } from "../../global/Function"
+import { slugNameGenerator } from "../../global/Function"
 
 interface Props {
   setFormData?: (formData: any) => void
@@ -13,13 +13,7 @@ interface Props {
   setLoading?: (loading: boolean) => void
 }
 
-interface QuestionType {
-  type: string
-}
-
 function QuestionModal({ setFormData, setOpen, label, question, setLoading }: Props) {
-  const [questionType, setQuestionType] = useState<QuestionType>({ type: "" })
-
   const {
     register,
     handleSubmit,
@@ -36,14 +30,7 @@ function QuestionModal({ setFormData, setOpen, label, question, setLoading }: Pr
   )
 
   const watchTypeField = watch("field_type")
-
   const router = useRouter()
-
-  useEffect(() => {
-    if (watchTypeField === "select") {
-      setQuestionType({ type: "select" })
-    }
-  }, [watchTypeField])
 
   const onSubmit: SubmitHandler<QuestionInput> = async data => {
     if (label === "experiment") {

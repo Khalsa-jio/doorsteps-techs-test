@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json({ data: experiments, message: "success" })
     } catch (err) {
       console.log(err)
-      return res.status(500).json({ message: "could not submit comment", err })
+      return res.status(500).json({ message: "could not found", err })
     }
   } else if (req.method === "POST") {
     const { name, description, isEnabled, questions } = JSON.parse(req.body)
