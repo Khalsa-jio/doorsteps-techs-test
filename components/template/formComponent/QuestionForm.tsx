@@ -71,7 +71,7 @@ function QuestionModal({ setFormData, setOpen, label, question, setLoading }: Pr
   }
   return (
     <div
-      className={`py-16 bg-white px-4 sm:px-6 w-full h-auto flex justify-start items-start  rounded-xl max-w-2xl 
+      className={`questionForm py-16 bg-white px-4 sm:px-6 w-full h-auto flex justify-start items-start  rounded-xl max-w-2xl 
       p-5 shadow${
         label === "edit" ? " mx-auto  " : " px-4 min-h-[400px] min-w-[350px]  sm:min-w-[400px] md:min-w-[600px]"
       }`}
